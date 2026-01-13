@@ -1,150 +1,3 @@
-// import { useNavigate } from "react-router-dom";
-// import { useState } from "react";
-
-// export default function AddEditProduct() {
-//     const navigate = useNavigate();
-//     const [images, setImages] = useState([]);
-
-//     const handleFileChange = (e) => {
-//         const files = Array.from(e.target.files);
-//         setImages(files);
-//     };
-
-//     const handleSubmit = (e) => {
-//         e.preventDefault();
-//         alert("Product saved!");
-//         navigate("/products");
-//     };
-
-//     return (
-//         <div className="max-w-5xl mx-auto">
-//             {/* Page Title */}
-//             <h1 className="text-3xl font-bold mb-6 text-gray-800">Add New Product</h1>
-
-//             <div className="bg-white p-8 rounded-2xl shadow-md border border-gray-100">
-//                 <form onSubmit={handleSubmit}>
-
-//                     {/* Product Basic Info */}
-//                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-//                         <div>
-//                             <label className="block mb-1 font-semibold text-gray-700">
-//                                 Product Name
-//                             </label>
-//                             <input
-//                                 type="text"
-//                                 placeholder="Enter product name"
-//                                 className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-400"
-//                                 required
-//                             />
-//                         </div>
-
-//                         <div>
-//                             <label className="block mb-1 font-semibold text-gray-700">
-//                                 Price (₹)
-//                             </label>
-//                             <input
-//                                 type="number"
-//                                 placeholder="Enter price"
-//                                 className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-400"
-//                                 required
-//                             />
-//                         </div>
-
-//                         <div>
-//                             <label className="block mb-1 font-semibold text-gray-700">
-//                                 Stock
-//                             </label>
-//                             <input
-//                                 type="number"
-//                                 placeholder="Enter stock quantity"
-//                                 className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-400"
-//                                 required
-//                             />
-//                         </div>
-
-//                         <div>
-//                             <label className="block mb-1 font-semibold text-gray-700">
-//                                 Category
-//                             </label>
-//                             <select className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-400">
-//                                 <option>Electronics</option>
-//                                 <option>Clothing</option>
-//                                 <option>Home</option>
-//                             </select>
-//                         </div>
-//                     </div>
-
-//                     {/* Description */}
-//                     <div className="mt-6">
-//                         <label className="block mb-2 font-semibold text-gray-700">
-//                             Description
-//                         </label>
-//                         <textarea
-//                             rows="4"
-//                             placeholder="Write product details..."
-//                             className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-400"
-//                             required
-//                         ></textarea>
-//                     </div>
-
-//                     {/* Image Upload */}
-//                     <div className="mt-8">
-//                         <label className="block mb-2 font-semibold text-gray-700">
-//                             Upload Images
-//                         </label>
-
-//                         <div className="border-2 border-dashed border-gray-300 p-6 rounded-xl text-center bg-gray-50 hover:bg-gray-100 transition relative">
-//                             <input
-//                                 type="file"
-//                                 multiple
-//                                 accept="image/*"
-//                                 onChange={handleFileChange}
-//                                 className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
-//                             />
-//                             <p className="text-gray-600 pointer-events-none">
-//                                 Drag & drop files here or click to upload
-//                             </p>
-//                         </div>
-
-//                         {/* Preview thumbnails */}
-//                         {images.length > 0 && (
-//                             <div className="mt-4 flex gap-3 flex-wrap">
-//                                 {images.map((img, i) => (
-//                                     <div key={i} className="w-24 h-24 border rounded overflow-hidden">
-//                                         <img
-//                                             src={URL.createObjectURL(img)}
-//                                             alt="preview"
-//                                             className="w-full h-full object-cover"
-//                                         />
-//                                     </div>
-//                                 ))}
-//                             </div>
-//                         )}
-//                     </div>
-
-//                     {/* Buttons */}
-//                     <div className="mt-10 flex gap-4">
-//                         <button
-//                             type="submit"
-//                             className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-xl shadow-md"
-//                         >
-//                             Save Product
-//                         </button>
-
-//                         <button
-//                             type="button"
-//                             onClick={() => navigate("/products")}
-//                             className="bg-gray-500 hover:bg-gray-600 text-white px-8 py-3 rounded-xl"
-//                         >
-//                             Cancel
-//                         </button>
-//                     </div>
-//                 </form>
-//             </div>
-//         </div>
-//     );
-// }
-// src/Admin/pages/AddEditProduct.jsx
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { ArrowLeftIcon } from "@heroicons/react/24/outline";
@@ -345,33 +198,37 @@ export default function AddEditProduct() {
   const getImageId = (img) => img._id || img.public_id || img.name;
 
   return (
-    <div className="max-w-5xl mx-auto p-6">
-      <div className="flex items-center gap-4 mb-8">
+    <div className="max-w-5xl mx-auto px-4 sm:px-6 py-6 md:py-8">
+      {/* Header with back button */}
+      <div className="flex items-center gap-3 sm:gap-4 mb-6 md:mb-8">
         <button
           onClick={() => navigate("/admin/products")}
-          className="text-gray-600 hover:text-gray-900"
+          className="p-2 -ml-2 text-gray-600 hover:text-gray-900 rounded-full hover:bg-gray-100 transition"
         >
-          <ArrowLeftIcon className="w-6 h-6" />
+          <ArrowLeftIcon className="w-6 h-6 sm:w-7 sm:h-7" />
         </button>
-        <h1 className="text-3xl font-bold text-gray-800">
+        <h1 className="text-2xl sm:text-3xl font-bold text-gray-800">
           {isEditMode ? "Edit Product" : "Add New Product"}
         </h1>
       </div>
 
-      <hr />
+      <hr className="my-6 border-gray-200" />
 
       {loadingProduct ? (
-        <div className="text-center py-12">
-          <div className="inline-block animate-spin rounded-full h-12 w-12 border-t-4 border-b-4 border-blue-600"></div>
+        <div className="text-center py-12 md:py-20">
+          <div className="inline-block animate-spin rounded-full h-10 w-10 sm:h-12 sm:w-12 border-t-4 border-b-4 border-blue-600"></div>
         </div>
       ) : error ? (
-        <div className="text-center py-16 text-red-600">{error}</div>
+        <div className="text-center py-12 md:py-16 text-red-600 text-lg">
+          {error}
+        </div>
       ) : (
-        <div className="bg-white p-8 rounded-2xl shadow-md border border-gray-100">
+        <div className="bg-white p-5 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl shadow-md border border-gray-100">
           <form onSubmit={handleSubmit}>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* Grid for form fields */}
+            <div className="grid grid-cols-1 gap-5 sm:gap-6 md:grid-cols-2 md:gap-6 lg:gap-8">
               <div>
-                <label className="block mb-1 font-semibold text-gray-700">
+                <label className="block mb-1.5 font-medium text-gray-700">
                   Product Name
                 </label>
                 <input
@@ -379,13 +236,13 @@ export default function AddEditProduct() {
                   name="name"
                   value={formData.name}
                   onChange={handleInputChange}
-                  className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-400"
+                  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:border-blue-400 transition"
                   required
                 />
               </div>
 
               <div>
-                <label className="block mb-1 font-semibold text-gray-700">
+                <label className="block mb-1.5 font-medium text-gray-700">
                   Price (₹)
                 </label>
                 <input
@@ -395,13 +252,13 @@ export default function AddEditProduct() {
                   onChange={handleInputChange}
                   min="0"
                   step="0.01"
-                  className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-400"
+                  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:border-blue-400 transition"
                   required
                 />
               </div>
 
               <div>
-                <label className="block mb-1 font-semibold text-gray-700">
+                <label className="block mb-1.5 font-medium text-gray-700">
                   Stock
                 </label>
                 <input
@@ -410,23 +267,23 @@ export default function AddEditProduct() {
                   value={formData.stock}
                   onChange={handleInputChange}
                   min="0"
-                  className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-400"
+                  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:border-blue-400 transition"
                   required
                 />
               </div>
 
               <div>
-                <label className="block mb-1 font-semibold text-gray-700">
+                <label className="block mb-1.5 font-medium text-gray-700">
                   Category
                 </label>
                 {loadingCategories ? (
-                  <p>Loading categories...</p>
+                  <p className="text-gray-500 py-3">Loading categories...</p>
                 ) : (
                   <select
                     name="category"
                     value={formData.category}
                     onChange={handleInputChange}
-                    className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-400"
+                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:border-blue-400 transition"
                     required
                   >
                     <option value="">Select category</option>
@@ -438,11 +295,13 @@ export default function AddEditProduct() {
                   </select>
                 )}
               </div>
-              <div>
-                <label className="block mb-3 font-semibold text-gray-700">
+
+              {/* Is Featured - full width on mobile */}
+              <div className="md:col-span-2 lg:col-span-1">
+                <label className="block mb-2 font-medium text-gray-700">
                   Is Featured
                 </label>
-                <div className="flex items-center gap-4">
+                <div className="flex items-center gap-3 sm:gap-4">
                   <label className="relative inline-flex items-center cursor-pointer">
                     <input
                       type="checkbox"
@@ -456,9 +315,9 @@ export default function AddEditProduct() {
                       }}
                       className="sr-only peer"
                     />
-                    <div className="w-12 h-6 bg-gray-300 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                    <div className="w-11 h-6 sm:w-12 sm:h-6 bg-gray-300 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-0.5 after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
                   </label>
-                  <span className="text-gray-600">
+                  <span className="text-gray-600 text-sm sm:text-base">
                     {formData.isFeatured
                       ? "Marked as Featured Product"
                       : "Not featured"}
@@ -467,42 +326,46 @@ export default function AddEditProduct() {
               </div>
             </div>
 
-            <div className="mt-6">
-              <label className="block mb-2 font-semibold text-gray-700">
+            {/* Description */}
+            <div className="mt-6 md:mt-8">
+              <label className="block mb-1.5 font-medium text-gray-700">
                 Description
               </label>
               <textarea
                 name="description"
                 value={formData.description}
                 onChange={handleInputChange}
-                rows="5"
-                className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-400"
+                rows="4 sm:rows-5"
+                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:border-blue-400 transition min-h-[120px]"
                 required
               />
             </div>
 
-            {/* Image Upload */}
-            <div className="mt-8">
-              <label className="block mb-2 font-semibold text-gray-700">
+            {/* Image Upload Section */}
+            <div className="mt-8 md:mt-10">
+              <label className="block mb-2 font-medium text-gray-700">
                 Product Images
               </label>
 
               {/* Existing Images (Edit Mode) */}
               {isEditMode && existingImages.length > 0 && (
                 <div className="mb-6">
-                  <p className="text-sm text-gray-600 mb-3">Current Images</p>
-                  <div className="flex gap-4 flex-wrap">
+                  <p className="text-sm text-gray-500 mb-3">Current Images</p>
+                  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 sm:gap-4">
                     {existingImages.map((img) => (
-                      <div key={getImageId(img)} className="relative group">
+                      <div
+                        key={getImageId(img)}
+                        className="relative group aspect-square"
+                      >
                         <img
                           src={getImageUrl(img)}
                           alt="product"
-                          className="w-32 h-32 object-cover rounded-lg border"
+                          className="w-full h-full object-cover rounded-lg border border-gray-200 shadow-sm"
                         />
                         <button
                           type="button"
                           onClick={() => removeExistingImage(getImageId(img))}
-                          className="absolute top-1 right-1 bg-red-500 text-white rounded-full p-1 opacity-0 group-hover:opacity-100 transition"
+                          className="absolute top-1.5 right-1.5 bg-red-500 text-white rounded-full w-7 h-7 flex items-center justify-center opacity-0 group-hover:opacity-100 transition shadow-md"
                         >
                           ×
                         </button>
@@ -512,57 +375,67 @@ export default function AddEditProduct() {
                 </div>
               )}
 
-              {/* New Images Upload */}
-              <div className="border-2 border-dashed border-gray-300 p-8 rounded-xl text-center bg-gray-50 hover:bg-gray-100 transition relative">
+              {/* Upload Area */}
+              <div className="border-2 border-dashed border-gray-300 p-6 sm:p-8 md:p-10 rounded-xl text-center bg-gray-50 hover:bg-gray-100 transition relative">
                 <input
                   type="file"
                   multiple
                   accept="image/*"
                   onChange={handleFileChange}
-                  className="absolute inset-0 w-full opacity-0 cursor-pointer"
+                  className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
                 />
-                <p className="text-gray-600">
-                  Drop images here or click to upload
+                <p className="text-gray-500 text-sm sm:text-base">
+                  Drop images here or click to upload (multiple allowed)
                 </p>
               </div>
 
               {/* New Image Previews */}
               {images.length > 0 && (
-                <div className="mt-4 flex gap-4 flex-wrap">
-                  {images.map((file, i) => (
-                    <div key={i} className="relative group">
-                      <img
-                        src={URL.createObjectURL(file)}
-                        alt="preview"
-                        className="w-32 h-32 object-cover rounded-lg border"
-                      />
-                      <button
-                        type="button"
-                        onClick={() => removeNewImage(i)}
-                        className="absolute top-1 right-1 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center opacity-0 group-hover:opacity-100 transition"
-                      >
-                        ×
-                      </button>
-                    </div>
-                  ))}
+                <div className="mt-5 sm:mt-6">
+                  <p className="text-sm text-gray-500 mb-3">
+                    New images to upload
+                  </p>
+                  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 sm:gap-4">
+                    {images.map((file, i) => (
+                      <div key={i} className="relative group aspect-square">
+                        <img
+                          src={URL.createObjectURL(file)}
+                          alt="preview"
+                          className="w-full h-full object-cover rounded-lg border border-gray-200 shadow-sm"
+                        />
+                        <button
+                          type="button"
+                          onClick={() => removeNewImage(i)}
+                          className="absolute top-1.5 right-1.5 bg-red-500 text-white rounded-full w-7 h-7 flex items-center justify-center opacity-0 group-hover:opacity-100 transition shadow-md text-lg font-bold"
+                        >
+                          ×
+                        </button>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               )}
             </div>
 
-            {error && <p className="text-red-600 mt-4 text-center">{error}</p>}
+            {error && (
+              <p className="text-red-600 mt-6 text-center text-sm sm:text-base">
+                {error}
+              </p>
+            )}
 
-            <div className="mt-10 flex gap-4 justify-end">
+            {/* Action Buttons */}
+            <div className="mt-8 md:mt-10 flex flex-col sm:flex-row gap-4 sm:gap-5 justify-end">
               <button
                 type="button"
                 onClick={() => navigate("/admin/products")}
-                className="px-8 py-3 bg-gray-500 hover:bg-gray-600 text-white rounded-xl"
+                className="px-6 sm:px-8 py-3 bg-gray-500 hover:bg-gray-600 text-white rounded-xl font-medium transition order-2 sm:order-1"
               >
                 Cancel
               </button>
               <button
                 type="submit"
                 disabled={saving || loadingProduct}
-                className="px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-xl shadow-md disabled:opacity-70"
+                className="px-6 sm:px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-xl shadow-md disabled:opacity-60 font-medium transition order-1 sm:order-2"
               >
                 {saving
                   ? isEditMode

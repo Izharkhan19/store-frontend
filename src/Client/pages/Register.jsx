@@ -77,12 +77,14 @@ export default function Register() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-pink-50 flex items-center justify-center px-4">
-      <div className="max-w-md w-full bg-white rounded-3xl shadow-2xl p-10">
+    <div className="min-h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-pink-50 flex items-center justify-center px-4 sm:px-6 lg:px-8">
+      <div className="w-full max-w-md bg-white rounded-2xl sm:rounded-3xl shadow-xl sm:shadow-2xl p-6 sm:p-8 lg:p-10 transition-all duration-300">
         {/* Header */}
-        <div className="text-center mb-10">
-          <h1 className="text-4xl font-bold text-gray-900">Create Account</h1>
-          <p className="text-lg text-gray-600 mt-3">
+        <div className="text-center mb-8 sm:mb-10">
+          <h1 className="text-3xl sm:text-4xl font-bold text-gray-900">
+            Create Account
+          </h1>
+          <p className="text-base sm:text-lg text-gray-600 mt-2 sm:mt-3">
             Join our handmade community
           </p>
         </div>
@@ -95,9 +97,9 @@ export default function Register() {
         )}
 
         {/* Register Form */}
-        <form onSubmit={handleRegister} className="space-y-6">
+        <form onSubmit={handleRegister} className="space-y-5 sm:space-y-6">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-gray-700 mb-1.5 sm:mb-2">
               Full Name
             </label>
             <input
@@ -106,13 +108,13 @@ export default function Register() {
               value={formData.name}
               onChange={handleChange}
               placeholder="John Doe"
-              className="w-full px-5 py-4 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent transition"
+              className="w-full px-4 sm:px-5 py-3.5 sm:py-4 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent transition text-base sm:text-lg"
               required
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-gray-700 mb-1.5 sm:mb-2">
               Email Address
             </label>
             <input
@@ -121,13 +123,13 @@ export default function Register() {
               value={formData.email}
               onChange={handleChange}
               placeholder="you@example.com"
-              className="w-full px-5 py-4 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent transition"
+              className="w-full px-4 sm:px-5 py-3.5 sm:py-4 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent transition text-base sm:text-lg"
               required
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-gray-700 mb-1.5 sm:mb-2">
               Password
             </label>
             <input
@@ -136,13 +138,13 @@ export default function Register() {
               value={formData.password}
               onChange={handleChange}
               placeholder="••••••••"
-              className="w-full px-5 py-4 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent transition"
+              className="w-full px-4 sm:px-5 py-3.5 sm:py-4 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent transition text-base sm:text-lg"
               required
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-gray-700 mb-1.5 sm:mb-2">
               Confirm Password
             </label>
             <input
@@ -151,7 +153,7 @@ export default function Register() {
               value={formData.confirmPassword}
               onChange={handleChange}
               placeholder="••••••••"
-              className="w-full px-5 py-4 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent transition"
+              className="w-full px-4 sm:px-5 py-3.5 sm:py-4 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent transition text-base sm:text-lg"
               required
             />
           </div>
@@ -159,11 +161,11 @@ export default function Register() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-amber-600 hover:bg-amber-700 disabled:bg-gray-400 text-white font-bold text-lg py-5 rounded-2xl transition shadow-lg transform hover:scale-105 disabled:scale-100 flex items-center justify-center gap-3"
+            className="w-full bg-amber-600 hover:bg-amber-700 disabled:bg-gray-400 disabled:cursor-not-allowed text-white font-bold text-base sm:text-lg py-4 sm:py-5 rounded-2xl transition shadow-lg hover:shadow-xl hover:scale-[1.02] disabled:scale-100 flex items-center justify-center gap-3"
           >
             {loading ? (
               <>
-                <div className="animate-spin rounded-full h-6 w-6 border-t-2 border-b-2 border-white"></div>
+                <div className="animate-spin rounded-full h-5 w-5 sm:h-6 sm:w-6 border-t-2 border-b-2 border-white"></div>
                 Creating Account...
               </>
             ) : (
@@ -173,20 +175,22 @@ export default function Register() {
         </form>
 
         {/* Divider */}
-        <div className="my-8 flex items-center">
+        <div className="my-7 sm:my-8 flex items-center">
           <div className="flex-1 border-t border-gray-300"></div>
-          <span className="px-4 text-sm text-gray-500 bg-white">or</span>
+          <span className="px-3 sm:px-4 text-sm text-gray-500 bg-white">
+            or
+          </span>
           <div className="flex-1 border-t border-gray-300"></div>
         </div>
 
         {/* Login Link */}
         <div className="text-center">
-          <p className="text-gray-600">
+          <p className="text-gray-600 text-sm sm:text-base">
             Already have an account?{" "}
             <Link
               to="/login"
               state={{ from: location.state?.from }}
-              className="font-bold text-amber-600 hover:underline"
+              className="font-bold text-amber-600 hover:underline transition-colors"
             >
               Sign in
             </Link>
@@ -194,7 +198,7 @@ export default function Register() {
         </div>
 
         {/* Terms */}
-        <p className="text-xs text-center text-gray-500 mt-8">
+        <p className="text-xs sm:text-sm text-center text-gray-500 mt-8 sm:mt-10 leading-relaxed">
           By creating an account, you agree to our{" "}
           <a href="#" className="text-amber-600 hover:underline">
             Terms of Service

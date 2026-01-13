@@ -429,131 +429,116 @@ export default function Dashboard() {
   const lowStockProducts = products.filter((p) => p.stock < 10).length;
 
   /* -------------------- UI -------------------- */
-  return (
-    <div className="p-6">
-      <h1 className="text-3xl font-bold mb-8 text-gray-800">
-        Dashboard Overview
-      </h1>
+return (
+  <div className="p-4 sm:p-6 lg:p-8 max-w-7xl mx-auto">
+    <h1 className="text-2xl sm:text-3xl font-bold mb-6 text-gray-800">
+      Dashboard Overview
+    </h1>
 
-      {/* Stats Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
-        {/* Total Products */}
-        <div className="bg-white rounded-xl p-6 shadow-md border">
-          <div className="flex justify-between items-center">
-            <div>
-              <p className="text-gray-500 text-sm">Total Products</p>
-              <p className="text-3xl font-bold">
-                {loadingProducts ? "..." : totalProductsCount}
-              </p>
-              <p className="text-xs text-gray-500 mt-2">
-                {activeProducts} active • {lowStockProducts} low stock
-              </p>
-            </div>
-            <CubeIcon className="w-14 h-14 text-blue-500 bg-blue-100 p-3 rounded-xl" />
-          </div>
-        </div>
-
-        {/* Orders */}
-        <div className="bg-white rounded-xl p-6 shadow-md border">
-          <div className="flex justify-between items-center">
-            <div>
-              <p className="text-gray-500 text-sm">Total Orders</p>
-              <p className="text-3xl font-bold">
-                {loadingStats ? "..." : totalOrders}
-              </p>
-            </div>
-            <ShoppingCartIcon className="w-14 h-14 text-green-600 bg-green-100 p-3 rounded-xl" />
-          </div>
-        </div>
-
-        {/* Revenue */}
-        <div className="bg-white rounded-xl p-6 shadow-md border">
-          <div className="flex justify-between items-center">
-            <div>
-              <p className="text-gray-500 text-sm">Revenue</p>
-              <p className="text-3xl font-bold">
-                {loadingStats ? "..." : `₹${(totalRevenue / 1000).toFixed(1)}k`}
-              </p>
-            </div>
-            <CurrencyDollarIcon className="w-14 h-14 text-purple-600 bg-purple-100 p-3 rounded-xl" />
-          </div>
-        </div>
-
-        {/* Customers */}
-        <div className="bg-white rounded-xl p-6 shadow-md border">
-          <div className="flex justify-between items-center">
-            <div>
-              <p className="text-gray-500 text-sm">Customers</p>
-              <p className="text-3xl font-bold">
-                {loadingStats ? "..." : totalCustomers}
-              </p>
-            </div>
-            <UserGroupIcon className="w-14 h-14 text-orange-600 bg-orange-100 p-3 rounded-xl" />
-          </div>
-        </div>
+    {/* Stats Cards */}
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-8">
+      {/* Total Products */}
+      <div className="bg-white rounded-xl p-5 shadow-sm border border-gray-200">
+        <p className="text-sm text-gray-500 mb-1">Total Products</p>
+        <p className="text-2xl sm:text-3xl font-bold mb-1">
+          {loadingProducts ? "..." : totalProductsCount}
+        </p>
+        <p className="text-xs sm:text-sm text-gray-600">
+          {activeProducts} active • {lowStockProducts} low stock
+        </p>
       </div>
 
-      {/* Charts */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        {/* Monthly Sales */}
-        <div className="bg-white rounded-xl p-6 shadow-md border">
-          <h2 className="text-xl font-semibold mb-6">Monthly Sales Overview</h2>
+      {/* Orders */}
+      <div className="bg-white rounded-xl p-5 shadow-sm border border-gray-200">
+        <p className="text-sm text-gray-500 mb-1">Total Orders</p>
+        <p className="text-2xl sm:text-3xl font-bold">
+          {loadingStats ? "..." : totalOrders}
+        </p>
+      </div>
 
+      {/* Revenue */}
+      <div className="bg-white rounded-xl p-5 shadow-sm border border-gray-200">
+        <p className="text-sm text-gray-500 mb-1">Revenue</p>
+        <p className="text-2xl sm:text-3xl font-bold">
+          {loadingStats ? "..." : `₹${(totalRevenue / 1000).toFixed(1)}k`}
+        </p>
+      </div>
+
+      {/* Customers */}
+      <div className="bg-white rounded-xl p-5 shadow-sm border border-gray-200">
+        <p className="text-sm text-gray-500 mb-1">Customers</p>
+        <p className="text-2xl sm:text-3xl font-bold">
+          {loadingStats ? "..." : totalCustomers}
+        </p>
+      </div>
+    </div>
+
+    {/* Charts + Quick Stats */}
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
+      {/* Monthly Sales */}
+      <div className="bg-white rounded-xl p-5 sm:p-6 shadow-sm border border-gray-200">
+        <h2 className="text-lg sm:text-xl font-semibold mb-4 sm:mb-5">
+          Monthly Sales Overview
+        </h2>
+
+        <div className="h-72 sm:h-80 flex items-center justify-center">
           {loadingChart ? (
-            <div className="h-80 flex items-center justify-center text-gray-500">
-              Loading chart...
-            </div>
+            <div className="text-gray-500">Loading chart...</div>
           ) : monthlySales.length === 0 ? (
-            <div className="h-80 flex items-center justify-center text-gray-500">
-              No sales data available
-            </div>
+            <div className="text-gray-500">No sales data available</div>
           ) : (
-            <ResponsiveContainer width="100%" height={320}>
+            <ResponsiveContainer width="100%" height="100%">
               <BarChart data={monthlySales}>
-                <XAxis dataKey="month" />
-                <YAxis />
-                <Tooltip formatter={(v) => `₹${v.toLocaleString()}`} />
-                <Bar dataKey="total" radius={[8, 8, 0, 0]} />
+                <XAxis dataKey="month" fontSize={12} />
+                <YAxis fontSize={12} />
+                <Tooltip 
+                  formatter={(v) => `₹${v.toLocaleString()}`} 
+                  contentStyle={{ fontSize: '13px' }}
+                />
+                <Bar dataKey="total" fill="#3b82f6" radius={[4, 4, 0, 0]} />
               </BarChart>
             </ResponsiveContainer>
           )}
         </div>
+      </div>
 
-        {/* Quick Stats */}
-        <div className="bg-white rounded-xl p-6 shadow-md border">
-          <h2 className="text-xl font-semibold mb-6">Quick Stats</h2>
+      {/* Quick Stats */}
+      <div className="bg-white rounded-xl p-5 sm:p-6 shadow-sm border border-gray-200">
+        <h2 className="text-lg sm:text-xl font-semibold mb-4 sm:mb-5">
+          Quick Stats
+        </h2>
 
-          <div className="space-y-4">
-            <div className="flex justify-between border-b pb-3">
-              <span>Categories</span>
-              <span className="font-bold">
-                {loadingCategories ? "..." : categories.length}
-              </span>
-            </div>
+        <div className="space-y-4 text-sm sm:text-base">
+          <div className="flex justify-between py-2 border-b border-gray-100">
+            <span className="text-gray-600">Categories</span>
+            <span className="font-medium">
+              {loadingCategories ? "..." : categories.length}
+            </span>
+          </div>
 
-            <div className="flex justify-between border-b pb-3">
-              <span>Pending Orders</span>
-              <span className="font-bold text-orange-600">
-                {stats?.pendingOrders || 0}
-              </span>
-            </div>
+          <div className="flex justify-between py-2 border-b border-gray-100">
+            <span className="text-gray-600">Pending Orders</span>
+            <span className="font-medium text-orange-600">
+              {stats?.pendingOrders || 0}
+            </span>
+          </div>
 
-            <div className="flex justify-between border-b pb-3">
-              <span>Out of Stock</span>
-              <span className="font-bold text-red-600">
-                {products.filter((p) => p.stock === 0).length}
-              </span>
-            </div>
+          <div className="flex justify-between py-2 border-b border-gray-100">
+            <span className="text-gray-600">Out of Stock</span>
+            <span className="font-medium text-red-600">
+              {products.filter((p) => p.stock === 0).length}
+            </span>
+          </div>
 
-            <div className="flex justify-between">
-              <span>Avg Order Value</span>
-              <span className="font-bold text-green-600">
-                ₹{totalOrders ? Math.round(totalRevenue / totalOrders) : 0}
-              </span>
-            </div>
+          <div className="flex justify-between py-2">
+            <span className="text-gray-600">Avg Order Value</span>
+            <span className="font-medium text-green-600">
+              ₹{totalOrders ? Math.round(totalRevenue / totalOrders) : 0}
+            </span>
           </div>
         </div>
       </div>
     </div>
-  );
+  </div>
+);
 }
